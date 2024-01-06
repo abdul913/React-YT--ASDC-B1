@@ -85,7 +85,7 @@ const Header = () => {
       <div>
         {user && (
           <>
-            <button onClick={handleSignOut} className=" bg-red-500 w-28 h-12">
+            <button onClick={handleSignOut} className=" bg-green-500 w-28 h-12">
               Sign Out
             </button>
             <div>
