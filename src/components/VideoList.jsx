@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import { useFetch } from "../hooks/useFetch";
 
 const VideoList = () => {
   let [resData, setResData] = useState([]);
-  async function fetchData() {
-    let data = await fetch(
+
+  async function ResVideoList() {
+    let res = await useFetch(
       "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=30&regionCode=IN&key=AIzaSyA5vUeSVcdo_thfktW3sl1pilgCO1KE8R0"
     );
-    let res = await data.json();
     setResData(res.items);
   }
+  // async function fetchData() {
+  //   let data = await fetch(
+  //     "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=30&regionCode=IN&key=AIzaSyA5vUeSVcdo_thfktW3sl1pilgCO1KE8R0"
+  //   );
+  //   let res = await data.json();
+  //   setResData(res.items);
+  // }
 
   useEffect(() => {
-    fetchData();
+    ResVideoList()
+    // fetchData();
     // console.log(resData);
   }, []);
   return (
